@@ -1,0 +1,30 @@
+{
+  "lambda": [
+    "lambda:*",
+    "logs:*"
+  ],
+  "s3": [
+    "s3:*"
+  ],
+  "dynamodb": [
+    "dynamodb:*"
+  ],
+  "ec2": [
+    "ec2:*"
+  ],
+  "rds": [
+    "rds:*"
+  ],
+  "cloudformation": [
+    "cloudformation:*"
+  ],
+  "iam": [
+    "iam:*"
+  ],
+  "sts": [
+    "sts:*"
+  ],
+  "apigateway": [
+    "apigateway:*"
+  ]
+}
