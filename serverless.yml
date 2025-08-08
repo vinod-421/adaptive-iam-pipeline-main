@@ -1,18 +1,33 @@
 service: adaptive-iam-service
 
+frameworkVersion: '3'
+
 provider:
   name: aws
   runtime: nodejs18.x
   region: us-east-1
+  stage: ${opt:stage, 'dev'}
   environment:
-    BUCKET_NAME: ${self:custom.bucketName}
+    BUCKET_NAME: ${self:custom.bucketName.${self:provider.stage}}
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - s3:GetObject
+            - s3:ListBucket
+          Resource:
+            - arn:aws:s3:::${self:custom.bucketName.${self:provider.stage}}
+            - arn:aws:s3:::${self:custom.bucketName.${self:provider.stage}}/*
 
 custom:
-  bucketName: adaptive-iam-artifacts-${sls:stage}
+  bucketName:
+    dev: adaptive-iam-artifacts-dev
+    prod: adaptive-iam-artifacts-prod
 
 functions:
   fetchS3:
-    handler: lambda/index.handler
+    handler: lambda-app/index.handler
     events:
       - http:
           path: fetch
@@ -23,4 +38,4 @@ resources:
     AppS3Bucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: ${self:custom.bucketName}
+        BucketName: ${self:custom.bucketName.${self:provider.stage}}
