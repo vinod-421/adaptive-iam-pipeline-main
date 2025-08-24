@@ -25,7 +25,12 @@ const getUserRole = (email) => {
     "admin@gmail.com": "admin",
   };
 
-  return roleMap[email] || "none";
+  // Check ENV variable first, then map from email, else default to admin
+  if (process.env.USER_ROLE) {
+    return process.env.USER_ROLE.toLowerCase();
+  }
+
+  return roleMap[email] || "admin"; // Default to admin for testing
 };
 
 const getTargetEnvironment = () => {
@@ -57,7 +62,7 @@ const detectContext = () => {
 
   const outputPath = path.join(outputDir, "detected-context.json");
   fs.writeFileSync(outputPath, JSON.stringify(context, null, 2));
-  console.log(`context saved`);
+  console.log(`Context saved to ${outputPath}`);
 };
 
 detectContext();
