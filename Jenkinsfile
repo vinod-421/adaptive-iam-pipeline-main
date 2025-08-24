@@ -22,13 +22,7 @@ pipeline {
     stages {
         stage('Pull main') {
             steps {
-                git branch: 'main', url: 'https://github.com/vinod-421/adaptive-iam-pipeline-main.git'
-            }
-             stages {
-        stage('Pull dev') {
-            steps {
-                git branch: 'dev', url: 'https://github.com/vinod-421/adaptive-iam-pipeline-main.git'
-            }
+                git branch: 'main', url: 'https://github.com/Aditijaiz/vinod-adaptive-iam-pipeline'
             }
         }
 
