@@ -2,5 +2,5 @@
   "userEmail": "unknown@gmail.com",
   "userRole": "admin",
   "branch": "unknown",
-  "environment": "prod"
+  "environment": "dev"
 }
