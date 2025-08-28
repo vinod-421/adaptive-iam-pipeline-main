@@ -305,7 +305,7 @@ allow if {
 Clones the latest code from the main branch to ensure consistent codebase for analysis.
 
 ```groovy
-git branch: 'main', url: 'https://github.com/adarshvs6665/vinod-adaptive-iam-pipeline.git'
+git branch: 'main', url: 'https://github.com/vinod-421/adaptive-iam-pipeline-main.git'
 ```
 
 ### Stage 2: **Install Dependencies**
